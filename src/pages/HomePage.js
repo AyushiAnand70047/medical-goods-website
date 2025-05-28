@@ -8,11 +8,9 @@ import {
   Mail,
   MapPin,
   Clock,
-  ChevronRight,
   Menu,
   X,
   Download,
-  Smartphone,
   Globe
 } from 'lucide-react';
 
