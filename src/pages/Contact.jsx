@@ -1,0 +1,170 @@
+import React, { useState } from 'react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { CONTACT_INFO } from '../utils/constants';
+import Header from '../components/common/Header';
+
+const Contact = () => {
+
+  const [currentPage, setCurrentPage] = useState('home');
+
+  const handlePageChange = (pageId) => {
+    console.log('Navigate to page:', pageId);
+    setCurrentPage(pageId);
+  };
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Thank you for your message! We will get back to you soon.');
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  return (
+    <>
+    <Header currentPage={currentPage} onPageChange={handlePageChange} />
+    <div className="min-h-screen py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
+          <p className="text-xl text-gray-600">Get in touch with our healthcare experts</p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Contact Form */}
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a Message</h2>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  rows="6"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+
+          {/* Contact Information */}
+          <div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h2>
+
+            <div className="space-y-6">
+              <div className="flex items-start">
+                <MapPin className="h-6 w-6 text-green-600 mt-1 mr-4" />
+                <div>
+                  <h3 className="font-semibold text-gray-900">Address</h3>
+                  <p className="text-gray-600">
+                    {CONTACT_INFO.address.street}<br />
+                    {CONTACT_INFO.address.city}<br />
+                    {CONTACT_INFO.address.state}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <Phone className="h-6 w-6 text-green-600 mt-1 mr-4" />
+                <div>
+                  <h3 className="font-semibold text-gray-900">Phone</h3>
+                  <p className="text-gray-600">{CONTACT_INFO.phone}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <Mail className="h-6 w-6 text-green-600 mt-1 mr-4" />
+                <div>
+                  <h3 className="font-semibold text-gray-900">Email</h3>
+                  <p className="text-gray-600">{CONTACT_INFO.email}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <Clock className="h-6 w-6 text-green-600 mt-1 mr-4" />
+                <div>
+                  <h3 className="font-semibold text-gray-900">Business Hours</h3>
+                  <div className="text-gray-600">
+                    <p>{CONTACT_INFO.businessHours.weekdays}</p>
+                    <p>{CONTACT_INFO.businessHours.saturday}</p>
+                    <p>{CONTACT_INFO.businessHours.sunday}</p>
+                    <p className="text-green-600 font-medium mt-2">{CONTACT_INFO.businessHours.emergency}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Map Placeholder */}
+            <div className="mt-8 bg-gray-200 h-64 rounded-lg flex items-center justify-center">
+              <div className="text-center text-gray-500">
+                <MapPin className="h-12 w-12 mx-auto mb-2" />
+                <p>Interactive Map Would Be Here</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </>
+  );
+};
+
+export default Contact;
