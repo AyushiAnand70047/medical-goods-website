@@ -16,17 +16,21 @@ import {
 
 // Main App Component
 const MedicalSurgicalWebsite = () => {
+  // State for current page selection
   const [currentPage, setCurrentPage] = useState('home');
+  // State for mobile menu toggle
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // State for contact form data
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
   });
+  // State for newsletter email input
   const [newsletterEmail, setNewsletterEmail] = useState('');
 
-  // Navigation items
+  // Navigation items for header/menu
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About Us' },
@@ -36,31 +40,32 @@ const MedicalSurgicalWebsite = () => {
     { id: 'terms', label: 'Terms & Conditions' }
   ];
 
-  // Handle form submissions
+  // Handle contact form submission
   const handleContactSubmit = (e) => {
     e.preventDefault();
     alert('Thank you for your message! We will get back to you soon.');
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
+  // Handle newsletter form submission
   const handleNewsletterSubmit = (e) => {
     e.preventDefault();
     alert('Thank you for subscribing to our newsletter!');
     setNewsletterEmail('');
   };
 
-  // Header Component
+  // Header Component (Logo, Navigation, Mobile Menu)
   const Header = () => (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          {/* Logo Section */}
           <div className="flex items-center">
             <Heart className="h-8 w-8 text-green-600 mr-2" />
             <span className="text-2xl font-bold text-gray-900">MedSurg</span>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation Links */}
           <nav className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <button
@@ -76,7 +81,7 @@ const MedicalSurgicalWebsite = () => {
             ))}
           </nav>
 
-          {/* Mobile menu button */}
+          {/* Mobile Menu Toggle Button */}
           <button
             className="md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -85,7 +90,7 @@ const MedicalSurgicalWebsite = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Dropdown */}
         {mobileMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
@@ -114,7 +119,7 @@ const MedicalSurgicalWebsite = () => {
   // Homepage Component
   const HomePage = () => (
     <div className="min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section with CTA and Stats */}
       <section className="bg-gradient-to-br from-green-50 to-blue-50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -127,7 +132,7 @@ const MedicalSurgicalWebsite = () => {
                 and surgical supplies to distributors, pharmacies, doctors, and direct customers.
               </p>
 
-              {/* CTA Buttons */}
+              {/* Call-to-Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <button className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center">
                   <Download className="mr-2 h-5 w-5" />
@@ -139,7 +144,7 @@ const MedicalSurgicalWebsite = () => {
                 </button>
               </div>
 
-              {/* Stats */}
+              {/* Quick Stats */}
               <div className="grid grid-cols-3 gap-8">
                 <div>
                   <div className="text-3xl font-bold text-green-600">500+</div>
@@ -156,7 +161,7 @@ const MedicalSurgicalWebsite = () => {
               </div>
             </div>
 
-            {/* Hero Image */}
+            {/* Hero Image/Visual */}
             <div className="relative">
               <div className="bg-green-100 rounded-2xl p-8 text-center">
                 <Heart className="h-32 w-32 text-green-600 mx-auto mb-4" />
@@ -175,6 +180,7 @@ const MedicalSurgicalWebsite = () => {
             <p className="text-xl text-gray-600">We are committed to excellence in healthcare supply</p>
           </div>
 
+          {/* Feature Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center p-6">
               <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -210,6 +216,7 @@ const MedicalSurgicalWebsite = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
           </div>
 
+          {/* Testimonial Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -230,6 +237,7 @@ const MedicalSurgicalWebsite = () => {
             ].map((testimonial, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-md">
                 <div className="flex items-center mb-4">
+                  {/* 5 Star Icons */}
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                   ))}
@@ -245,7 +253,7 @@ const MedicalSurgicalWebsite = () => {
         </div>
       </section>
 
-      {/* Newsletter Section */}
+      {/* Newsletter Signup Section */}
       <section className="py-20 bg-green-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Stay Updated</h2>
@@ -253,6 +261,7 @@ const MedicalSurgicalWebsite = () => {
             Subscribe to our newsletter for the latest updates on medical supplies and healthcare trends
           </p>
 
+          {/* Newsletter Form */}
           <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto flex gap-4">
             <input
               type="email"
@@ -284,7 +293,7 @@ const MedicalSurgicalWebsite = () => {
         </div>
 
         <div className="space-y-12">
-          {/* Company Story */}
+          {/* Company Story Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Our Story</h2>
             <p className="text-gray-600 leading-relaxed">
@@ -295,7 +304,7 @@ const MedicalSurgicalWebsite = () => {
             </p>
           </section>
 
-          {/* Mission & Vision */}
+          {/* Mission & Vision Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-green-50 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Our Mission</h3>
@@ -314,7 +323,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </div>
 
-          {/* Values */}
+          {/* Company Values Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">Our Values</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -349,7 +358,7 @@ const MedicalSurgicalWebsite = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* Contact Form Section */}
           <div>
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">Send us a Message</h2>
             <form onSubmit={handleContactSubmit} className="space-y-6">
@@ -406,11 +415,12 @@ const MedicalSurgicalWebsite = () => {
             </form>
           </div>
 
-          {/* Contact Information */}
+          {/* Contact Information Section */}
           <div>
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">Contact Information</h2>
 
             <div className="space-y-6">
+              {/* Address Info */}
               <div className="flex items-start">
                 <MapPin className="h-6 w-6 text-green-600 mt-1 mr-4" />
                 <div>
@@ -423,6 +433,7 @@ const MedicalSurgicalWebsite = () => {
                 </div>
               </div>
 
+              {/* Phone Info */}
               <div className="flex items-start">
                 <Phone className="h-6 w-6 text-green-600 mt-1 mr-4" />
                 <div>
@@ -431,6 +442,7 @@ const MedicalSurgicalWebsite = () => {
                 </div>
               </div>
 
+              {/* Email Info */}
               <div className="flex items-start">
                 <Mail className="h-6 w-6 text-green-600 mt-1 mr-4" />
                 <div>
@@ -439,6 +451,7 @@ const MedicalSurgicalWebsite = () => {
                 </div>
               </div>
 
+              {/* Business Hours Info */}
               <div className="flex items-start">
                 <Clock className="h-6 w-6 text-green-600 mt-1 mr-4" />
                 <div>
@@ -453,7 +466,7 @@ const MedicalSurgicalWebsite = () => {
               </div>
             </div>
 
-            {/* Map Placeholder */}
+            {/* Map Placeholder Section */}
             <div className="mt-8 bg-gray-200 h-64 rounded-lg flex items-center justify-center">
               <div className="text-center text-gray-500">
                 <MapPin className="h-12 w-12 mx-auto mb-2" />
@@ -472,6 +485,7 @@ const MedicalSurgicalWebsite = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Privacy Policy</h1>
         <div className="space-y-8 text-gray-600">
+          {/* Data Collection Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Data Collection and Usage</h2>
             <p className="mb-4">
@@ -485,6 +499,7 @@ const MedicalSurgicalWebsite = () => {
             </p>
           </section>
 
+          {/* Cookies Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Cookies and Tracking</h2>
             <p className="mb-4">
@@ -498,6 +513,7 @@ const MedicalSurgicalWebsite = () => {
             </p>
           </section>
 
+          {/* User Rights Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">User Rights</h2>
             <p className="mb-4">
@@ -511,6 +527,7 @@ const MedicalSurgicalWebsite = () => {
             </p>
           </section>
 
+          {/* Third-Party Sharing Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Third-Party Sharing</h2>
             <p className="mb-4">
@@ -524,6 +541,7 @@ const MedicalSurgicalWebsite = () => {
             </p>
           </section>
 
+          {/* Policy Updates Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Policy Updates</h2>
             <p>
@@ -533,6 +551,7 @@ const MedicalSurgicalWebsite = () => {
             </p>
           </section>
 
+          {/* Last Updated Info */}
           <div className="border-t pt-8">
             <p className="text-sm text-gray-500">
               Last updated: January 2025<br />
@@ -550,7 +569,7 @@ const MedicalSurgicalWebsite = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Refund Policy</h1>
         <div className="space-y-8 text-gray-600">
-          {/* Return Eligibility */}
+          {/* Return Eligibility Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Return Eligibility</h2>
             <p className="mb-4">
@@ -569,7 +588,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Refund Process */}
+          {/* Refund Process Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Refund Process</h2>
             <div className="space-y-4">
@@ -590,7 +609,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Processing Timeframes */}
+          {/* Processing Timeframes Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Processing Timeframes</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -605,7 +624,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Contact Information */}
+          {/* Contact for Assistance Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Contact for Assistance</h2>
             <div className="bg-gray-50 p-6 rounded-lg">
@@ -623,14 +642,14 @@ const MedicalSurgicalWebsite = () => {
     </div>
   );
 
-  // Terms and conditions Page Component
+  // Terms and Conditions Page Component
   const TermsConditionsPage = () => (
     <div className="min-h-screen py-20 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Terms and Conditions</h1>
         <div className="space-y-8 text-gray-600">
 
-          {/* Introduction */}
+          {/* Introduction Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Introduction</h2>
             <p className="mb-4">
@@ -646,7 +665,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Account Registration */}
+          {/* Account Registration Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Account Registration</h2>
             <div className="space-y-4">
@@ -663,7 +682,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Product Usage and Compliance */}
+          {/* Product Usage and Compliance Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Product Usage and Compliance</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -682,7 +701,7 @@ const MedicalSurgicalWebsite = () => {
             </p>
           </section>
 
-          {/* Orders and Payment */}
+          {/* Orders and Payment Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Orders and Payment</h2>
             <div className="space-y-4">
@@ -703,7 +722,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Shipping and Delivery */}
+          {/* Shipping and Delivery Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Shipping and Delivery</h2>
             <p className="mb-4">
@@ -721,7 +740,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Warranties and Disclaimers */}
+          {/* Warranties and Disclaimers Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Warranties and Disclaimers</h2>
             <div className="space-y-4">
@@ -739,7 +758,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Privacy and Data Protection */}
+          {/* Privacy and Data Protection Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Privacy and Data Protection</h2>
             <p className="mb-4">
@@ -758,7 +777,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Prohibited Uses */}
+          {/* Prohibited Uses Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Prohibited Uses</h2>
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">
@@ -773,7 +792,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Termination */}
+          {/* Termination Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Termination</h2>
             <p>
@@ -782,7 +801,7 @@ const MedicalSurgicalWebsite = () => {
             </p>
           </section>
 
-          {/* Contact Information */}
+          {/* Contact Information Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Contact Information</h2>
             <div className="bg-gray-50 p-6 rounded-lg">
@@ -796,7 +815,7 @@ const MedicalSurgicalWebsite = () => {
             </div>
           </section>
 
-          {/* Governing Law */}
+          {/* Governing Law Section */}
           <section>
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Governing Law</h2>
             <p>
@@ -810,7 +829,7 @@ const MedicalSurgicalWebsite = () => {
     </div>
   );
 
-  // Render selected page
+  // Render selected page based on navigation
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
@@ -830,6 +849,7 @@ const MedicalSurgicalWebsite = () => {
     }
   };
 
+  // Main render
   return (
     <div>
       <Header />
